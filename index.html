@@ -1,0 +1,118 @@
+<html>
+<head>
+            <script type="text/javascript">//<![CDATA[
+            // Google Analytics for WordPress by Yoast v4.3.3 | http://yoast.com/wordpress/google-analytics/
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-11610689-1']);
+                            _gaq.push(['_trackPageview']);
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+            //]]></script>
+
+    <script src="./jquery-1.11.0.min.js"></script>
+    <script src="./sim.js"></script>
+</head>
+<style>
+            /* tell the SVG path to be a thin blue line without any area fill */
+            path {
+                stroke-width: 1;
+                fill: none;
+            }
+            
+            .data1 {
+                stroke: steelblue;
+            }
+ 
+            .data2 {
+                stroke: orange;
+            }
+ 
+            .axis {
+              shape-rendering: crispEdges;
+            }
+ 
+            .x.axis line {
+              stroke: lightgrey;
+            }
+ 
+            .x.axis .minor {
+              stroke-opacity: .5;
+            }
+ 
+            .x.axis path {
+              display: none;
+            }
+            
+            .x.axis text {
+                font-size: 14;
+            }
+ 
+            .y.axis line, .y.axis path {
+              fill: none;
+              stroke: #000;
+            }
+ 
+            .y.axis text {
+                font-size: 14;
+            }
+ 
+            .y.axisRight text {
+                fill: orange;
+            }
+            
+            .y.axisLeft text {
+                fill: steelblue;
+            }
+
+</style>
+<body>
+
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<h3> Cost (in k$) versus months </h3>
+<table>
+<tr>
+<td>
+<div id="chart-container" style="display:none"> 
+<div id="chart"></div>
+</div>
+
+</td>
+<td>
+    <label for="items_per_month">How many items are uploded in the first month?</label><br><input type="text" id="items_per_month" value="2.6e7">
+    </p><p>
+    <label for="size_per_item">Size per item (bytes)</label><br><input type="text" id="size_per_item" value="4e6">
+    </p><p>
+    <label for="growth_rate_r">Growth Rate (r) [ using P<sub>t</sub> = P<sub>0</sub><i>e</i><sup>rt</sup> ]</label><br><input type="text" id="growth_rate_r" value="0.0763575609895">
+    </p><p>
+    <label for="storage_cost_per_byte">Storage cost ($/byte)</label><br><input type="text" id="storage_cost_per_byte" value="1.66e-11">
+    </p><p>    
+    <label for="bw_cost_per_byte">Bandwidth cost ($/byte)</label><br><input type="text" id="bw_cost_per_byte" value="1.66e-11">
+    </p><p>
+    <label for="qps_peak">Fraction of all stored items requested at peak (items/sec)</label><br><input type="text" id="qps_peak" value="3.66e-5">
+    </p><p>    
+    <label for="qps_ratio">Ratio of average qps / peak qps</label><br><input type="text" id="qps_ratio" value="0.02">
+    </p><p>
+    <label for="frac_undelivered_messages">(for ephemeral only) Fraction of messages that are never delivered.</label><br><input value="0.1" type="text" id="frac_undelivered_messages">
+    </p><p>    
+    <label for="fanout">(for ephemeral only) Number of users to which the photo is sent.</label><br><input type="text" id="fanout" value="2.5">
+    </p>    
+</td>
+</tr>
+</table>
+    <p></p>
+    <a id="show-raw-data" href='#' style="display:none">Show raw data</a>
+    <div id="data-container" style="display:none"> 
+        <h3>Estimates for traditional (fb-like) service</h3>
+        <table id="data-table" border="1"></table>
+        <h3>Estimates for ephemeral (snapchat-like) service</h3>
+        <table id="data-table-2" border="1"></table>
+    </div>
+</body>
